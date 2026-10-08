@@ -212,7 +212,7 @@ const AllProducts = () => {
 
   return (
     <section className="bg-[#f4f7f3] px-4 py-8 sm:px-5 lg:py-10">
-      <div className="mx-auto max-w-[1130px]">
+      <div className="mx-auto max-w-[1164px]">
         {/* ================= HEADER ================= */}
         <div className="mb-5">
           <h2 className="text-[26px] font-bold leading-8 text-gray-900 sm:text-[28px]">

@@ -4,19 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@heroui/react";
+import { getBanglaDate } from "@/utils/dateConvertion";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const getBanglaDate = () => {
-    return new Intl.DateTimeFormat("bn-BD", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-      timeZone: "Asia/Dhaka",
-    }).format(new Date());
-  };
+
 
   return (
     <nav className="w-full border-b border-gray-100 bg-white">
@@ -59,6 +52,7 @@ export default function Header() {
             সাইন ইন
           </Link>
 
+          <Link href={"/sign-up"}>
           <Button
             as={Link}
             href="/sign-up"
@@ -67,10 +61,12 @@ export default function Header() {
           >
             সাইন আপ
           </Button>
+          </Link>
         </div>
 
         {/* ================= MOBILE MENU BUTTON ================= */}
         <div className="flex items-center gap-2 sm:hidden">
+          <Link href="/sign-up">
           <Button
             as={Link}
             href="/sign-up"
@@ -80,6 +76,8 @@ export default function Header() {
           >
             সাইন আপ
           </Button>
+          </Link>
+          
 
           <button
             type="button"
