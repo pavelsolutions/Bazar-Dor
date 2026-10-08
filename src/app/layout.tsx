@@ -10,6 +10,7 @@ import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import CategoryNavbar from "@/components/shared/Navbar";
 import Marquee from "@/components/shared/Marquee";
+import { Toast } from "@heroui/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,6 +47,7 @@ export default function RootLayout({
         {/* <Header />
         <CategoryNavbar/> */}
         <div suppressHydrationWarning={false} className="sticky top-0 z-50">
+          <Toast.Provider placement="top end" />
           <Header />
           <CategoryNavbar />
         </div>

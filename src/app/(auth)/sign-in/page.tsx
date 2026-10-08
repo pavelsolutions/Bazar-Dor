@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
     Button,
     FieldError,
@@ -9,13 +10,16 @@ import {
     Input,
     Label,
     TextField,
+    toast,
 } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { signIn } from "@/lib/auth-client";
 
 const SignIn = () => {
+    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
 
-    const onSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const data: Record<string, string> = {};
@@ -30,6 +34,24 @@ const SignIn = () => {
             rememberMe: true,
             callbackURL: "/",
         });
+
+        if (error) {
+            // setIsLoading(false);
+            toast.danger("সাইন ইন ব্যর্থ", {
+                description: "ইমেইল অথবা পাসওয়ার্ড সঠিক নয়।",
+                timeout: 5000,
+            });
+
+            return;
+        }
+
+        toast.success("সাইন ইন সফল", {
+            description: "স্বাগতম! আপনাকে হোম পেজে নিয়ে যাওয়া হচ্ছে।",
+            timeout: 5000,
+        });
+
+        router.push("/");
+        router.refresh();
     };
 
     const handleGoogleSignIn = async () => {

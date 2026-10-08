@@ -1,20 +1,80 @@
 "use client"
 import { signOut, useSession } from "@/lib/auth-client";
+import { toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
 const ProfilePage = () => {
     const { data: session } = useSession();
     const router = useRouter();
 
+    // const handleSignOut = async () => {
+    //     await signOut({
+    //         fetchOptions: {
+    //             onSuccess: () => {
+    //                 router.push("/sign-in");
+    //             },
+    //         },
+    //     });    
+    // }
+
+    // const handleSignOut = async () => {
+    //     await signOut({
+    //         fetchOptions: {
+    //             onSuccess: () => {
+    //                 toast.success("সফলভাবে সাইন আউট হয়েছে", {
+    //                     description: "আপনি আপনার অ্যাকাউন্ট থেকে বের হয়ে গেছেন।",
+    //                     timeout: 3000,
+    //                 });
+
+    //                 setTimeout(() => {
+    //                     router.push("/sign-in");
+    //                     router.refresh();
+    //                 }, 500);
+    //             },
+
+    //             onError: () => {
+    //                 toast.danger("সাইন আউট করা যায়নি", {
+    //                     description: "দয়া করে আবার চেষ্টা করুন।",
+    //                 });
+    //             },
+    //         },
+    //     });
+    // };
+
+    // const handleSignOut = async () => {
+    //     await signOut({
+    //         fetchOptions: {
+    //             onSuccess: () => {
+    //                 router.push("/sign-in?logout=success");
+    //             },
+    //         },
+    //     });
+    // };
+
     const handleSignOut = async () => {
         await signOut({
             fetchOptions: {
                 onSuccess: () => {
-                    router.push("/sign-in");
+                    toast.success("সাইন আউট সফল", {
+                        description: "সফলভাবে সাইন আউট হয়েছে।",
+                        timeout: 5000,
+                    });
+
+                    setTimeout(() => {
+                        router.push("/sign-in");
+                        router.refresh();
+                    }, 5500);
+                },
+
+                onError: () => {
+                    toast.danger("সাইন আউট ব্যর্থ", {
+                        description: "আবার চেষ্টা করুন।",
+                    });
                 },
             },
         });
-    }
+    };
+
     return (
         <main className="min-h-[calc(100vh-68px)] bg-[#f4f7f3] px-4 py-6 sm:px-5 sm:py-8">
             <div className="mx-auto max-w-[1130px]">
@@ -39,7 +99,7 @@ const ProfilePage = () => {
                             {/* Avatar */}
                             <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-gray-100">
                                 <span className="text-xl font-semibold text-gray-500">
-                                    {session?.user?.name.slice(0,1)}
+                                    {session?.user?.name.slice(0, 1)}
                                 </span>
                             </div>
 
