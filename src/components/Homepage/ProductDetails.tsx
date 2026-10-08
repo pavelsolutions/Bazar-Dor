@@ -130,7 +130,7 @@ const ProductDetails = () => {
 
   return (
     <main className="min-h-screen bg-[#f4f7f3] px-4 py-5 sm:px-5 lg:py-6">
-      <div className="mx-auto max-w-[1130px]">
+      <div className="mx-auto max-w-[1164px]">
         {/* ================= BREADCRUMB ================= */}
         <div className="mb-5 flex items-center gap-2 text-[11px] text-gray-500">
           <Link

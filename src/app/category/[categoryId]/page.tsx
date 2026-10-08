@@ -1,4 +1,5 @@
 import { getCategory } from "@/api/category";
+import ProductCard from "@/components/Products/ProductCard";
 import { bnNumber } from "@/utils/number";
 import Link from "next/link";
 
@@ -13,11 +14,9 @@ const CategoryDetails = async ({ params }: ICategoryProps) => {
 
   const categories = await getCategory(categoryId);
 
-  console.log(categories);
-
   return (
     <main className="min-h-screen bg-[#f4f7f3] px-4 py-5 sm:px-5 sm:py-6">
-      <div className="mx-auto max-w-[1130px]">
+      <div className="mx-auto max-w-[1164px]">
 
         {/* ================= CATEGORY HEADER ================= */}
         <section className="rounded-[18px] border border-gray-200 bg-white px-5 py-5 sm:px-7">
@@ -76,61 +75,10 @@ const CategoryDetails = async ({ params }: ICategoryProps) => {
         <section className="mt-3">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {categories.map((category) => {
-              const isUp = category.change?.dir === "up";
-              const isDown = category.change?.dir === "down";
               return (
-                <Link href={`/products/${category.id}`}
-                  key={category.id}
-                  className="rounded-[16px] border border-gray-200 bg-white p-3.5 transition hover:border-green-400 hover:shadow-sm"
-                >
-                  {/* Product */}
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f1f5f1] text-[21px]">
-                      {category.image}
-                    </div>
-                    <div>
-                      <h2 className="text-[15px] font-semibold leading-5 text-gray-900">
-                        {category.nameBn}
-                      </h2>
-                      <p className="mt-0.5 text-[10px] text-gray-500">
-                        প্রতি কেজি
-                      </p>
-                    </div>
-                  </div>
-                  {/* Price */}
-                  <div className="mt-4 flex items-end justify-between">
-                    <div>
-                      <p className="text-[10px] text-gray-500">
-                        আজকের দাম
-                      </p>
-                      <p className="mt-0.5 text-[17px] font-semibold leading-5 text-gray-900">
-                        {bnNumber(category.today)}{" "}
-                        <span className="text-[11px] font-normal">
-                          টাকা
-                        </span>
-                      </p>
-                    </div>
-                    {/* Change */}
-                    <span
-                      className={`rounded-full px-2.5 py-1 text-[9px] font-medium ${
-                        isUp
-                          ? "bg-red-50 text-red-600"
-                          : isDown
-                            ? "bg-green-50 text-green-600"
-                            : "bg-gray-100 text-gray-600"
-                      }`}
-                    >
-                      {isUp
-                        ? `▲ ${bnNumber(category.change.pct)}%`
-                        : isDown
-                          ? `▼ ${bnNumber(category.change.pct)}%`
-                          : "— ০.০%"}
-                    </span>
-                  </div>
-                </Link>
+                <ProductCard key={category.id} product={category} />
               );
             })}
-
           </div>
         </section>
 

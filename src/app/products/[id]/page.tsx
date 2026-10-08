@@ -14,8 +14,6 @@ const ProductDetails = async ({ params }: IProductProps) => {
 
   const product: IProduct = await getProducts(id);
 
-  console.log(product, "Product Data");
-
   const minPrice = Math.min(
     ...product.markets.map((price) => Number(price.min))
   );
