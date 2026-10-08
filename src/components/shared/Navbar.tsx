@@ -1,11 +1,9 @@
-// "use client";
-
-import { getCategory } from "@/api/category";
-import { ICategory } from "@/types/products";
+import { getCategories } from "@/api/category";
 import Link from "next/link";
 
-const CategoryNavbar = async() => {
-    const categories = await getCategory();
+const CategoryNavbar = async () => {
+  const categories = await getCategories();
+
   return (
     <nav className="w-full border-b border-gray-200 bg-white">
       <div className="mx-auto max-w-[1164px]">

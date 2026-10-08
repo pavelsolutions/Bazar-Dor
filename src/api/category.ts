@@ -1,24 +1,51 @@
-import { ICategory } from "@/types/products";
+import { ICategory, IProduct } from "@/types/products";
 
-export const getCategory = async (category?:string): Promise<ICategory[]> => {
+// ================= GET ALL CATEGORIES =================
+
+export const getCategories = async (): Promise<ICategory[]> => {
   try {
-    const url = category
-      ? `https://api.api-store.workers.dev/api/bazardor/products?category=${category}`
-      : `https://api.api-store.workers.dev/api/bazardor/categories`;
-
-    const response = await fetch(url, {
-      next: {
-        revalidate: 3600,
-      },
-    });
+    const response = await fetch(
+      "https://api.api-store.workers.dev/api/bazardor/categories",
+      {
+        next: {
+          revalidate: 3600,
+        },
+      }
+    );
 
     if (!response.ok) {
-      throw new Error("Failed to fetch category");
+      throw new Error("Failed to fetch categories");
     }
 
     return await response.json();
   } catch (error) {
-    console.error("Error fetching category:", error);
+    console.error("Error fetching categories:", error);
+    return [];
+  }
+};
+
+// ================= GET PRODUCTS BY CATEGORY =================
+
+export const getCategory = async (
+  category: string
+): Promise<IProduct[]> => {
+  try {
+    const response = await fetch(
+      `https://api.api-store.workers.dev/api/bazardor/products?category=${category}`,
+      {
+        next: {
+          revalidate: 3600,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch category products");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching category products:", error);
     return [];
   }
 };

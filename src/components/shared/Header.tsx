@@ -12,7 +12,6 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
    const { data: session } = useSession();
-   console.log(session);
 
   const actionButtons = <>
     <Link

@@ -1,10 +1,10 @@
-import { ICategory, IProduct } from '@/types/products';
+import { IProduct } from '@/types/products';
 import { bnNumber } from '@/utils/number';
 import Link from 'next/link';
 import React from 'react';
 
 interface ProductCardProps {
-    product: ICategory
+    product: IProduct
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
