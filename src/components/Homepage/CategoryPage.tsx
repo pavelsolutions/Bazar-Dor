@@ -50,7 +50,7 @@ const CategoryPage = () => {
 
   return (
     <main className="min-h-screen bg-[#f4f7f3] px-4 py-5 sm:px-5 sm:py-6">
-      <div className="mx-auto max-w-[1130px]">
+      <div className="mx-auto max-w-[1164px]">
 
         {/* ================= CATEGORY HEADER ================= */}
         <section className="rounded-xl border border-gray-200 bg-white px-5 py-4 sm:px-6">

@@ -1,4 +1,6 @@
 import { getCategory } from "@/api/category";
+import { bnNumber } from "@/utils/number";
+import Link from "next/link";
 
 interface ICategoryProps {
   params: Promise<{
@@ -33,7 +35,7 @@ const CategoryDetails = async ({ params }: ICategoryProps) => {
               </h1>
 
               <p className="mt-0.5 text-[12px] text-gray-500">
-                {categories.length}টি পণ্যের আজকের দাম ও পরিবর্তন
+                {bnNumber(categories.length)}টি পণ্যের আজকের দাম ও পরিবর্তন
               </p>
             </div>
 
@@ -45,7 +47,7 @@ const CategoryDetails = async ({ params }: ICategoryProps) => {
           <div className="flex items-center justify-between">
 
             <p className="text-[12px] text-gray-600">
-              মোট {categories.length}টি পণ্য দেখানো হচ্ছে
+              মোট {bnNumber(categories.length)}টি পণ্য দেখানো হচ্ছে
             </p>
 
             <div className="flex items-center gap-2">
@@ -73,51 +75,41 @@ const CategoryDetails = async ({ params }: ICategoryProps) => {
         {/* ================= PRODUCTS ================= */}
         <section className="mt-3">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-
             {categories.map((category) => {
               const isUp = category.change?.dir === "up";
               const isDown = category.change?.dir === "down";
-
               return (
-                <div
+                <Link href={`/products/${category.id}`}
                   key={category.id}
                   className="rounded-[16px] border border-gray-200 bg-white p-3.5 transition hover:border-green-400 hover:shadow-sm"
                 >
                   {/* Product */}
                   <div className="flex items-center gap-3">
-
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f1f5f1] text-[21px]">
                       {category.image}
                     </div>
-
                     <div>
                       <h2 className="text-[15px] font-semibold leading-5 text-gray-900">
                         {category.nameBn}
                       </h2>
-
                       <p className="mt-0.5 text-[10px] text-gray-500">
                         প্রতি কেজি
                       </p>
                     </div>
-
                   </div>
-
                   {/* Price */}
                   <div className="mt-4 flex items-end justify-between">
-
                     <div>
                       <p className="text-[10px] text-gray-500">
                         আজকের দাম
                       </p>
-
                       <p className="mt-0.5 text-[17px] font-semibold leading-5 text-gray-900">
-                        {category.today}{" "}
+                        {bnNumber(category.today)}{" "}
                         <span className="text-[11px] font-normal">
                           টাকা
                         </span>
                       </p>
                     </div>
-
                     {/* Change */}
                     <span
                       className={`rounded-full px-2.5 py-1 text-[9px] font-medium ${
@@ -129,14 +121,13 @@ const CategoryDetails = async ({ params }: ICategoryProps) => {
                       }`}
                     >
                       {isUp
-                        ? `▲ ${category.change.pct}%`
+                        ? `▲ ${bnNumber(category.change.pct)}%`
                         : isDown
-                          ? `▼ ${category.change.pct}%`
+                          ? `▼ ${bnNumber(category.change.pct)}%`
                           : "— ০.০%"}
                     </span>
-
                   </div>
-                </div>
+                </Link>
               );
             })}
 
