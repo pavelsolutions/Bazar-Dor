@@ -12,12 +12,12 @@ const Marquee = async() => {
                     <div className="flex items-center whitespace-nowrap py-2.5">
                         {
                             products.map((product: IProduct) =>
-                                <>
-                                    <span key={product.id} className="mr-8 text-[12px] font-medium text-gray-700">
+                                <div key={product.id}>
+                                    <span className="mr-8 text-[12px] font-medium text-gray-700">
                                         {product.image} {product.nameBn}
                                         <span className="ml-2 text-red-600">{`${product.change.dir === "up" ? "▲" : "▼"}`} {product?.change?.pct}%</span>
                                     </span>
-                                </>)
+                                </div>)
                         }
                     </div>
                 </div>
