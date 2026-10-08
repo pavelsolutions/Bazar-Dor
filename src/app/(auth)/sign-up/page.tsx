@@ -13,7 +13,7 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 import { Icon } from "@iconify/react";
 
 const SignUp = () => {
@@ -48,6 +48,21 @@ const SignUp = () => {
 
     router.push("/");
   };
+
+  const handleGoogleSignIn = async () => {
+          const { data, error } = await signIn.social({
+              provider: "google",
+              callbackURL: "/",
+          });
+      };
+  
+      const handleGithubSignIn = async () => {
+          const { data, error } = await signIn.social({
+              provider: "github",
+              callbackURL: "/",
+          });
+      };
+  
 
   return (
     <main className="min-h-[calc(100vh-68px)] bg-[#f4f7f3] px-4 py-8 sm:py-10">
@@ -214,9 +229,10 @@ const SignUp = () => {
           <div className="grid grid-cols-2 gap-2">
             <Button
               type="button"
+              onClick={handleGoogleSignIn}
               variant="bordered"
               radius="sm"
-              // onPress={handleGoogleSignIn}
+              onPress={handleGoogleSignIn}
               className="h-8 border-gray-200 bg-white text-[12px] font-medium text-gray-700"
             >
               <Icon
@@ -228,8 +244,10 @@ const SignUp = () => {
 
             <Button
               type="button"
+              onClick={handleGithubSignIn}
               variant="bordered"
               radius="sm"
+              onPress={handleGithubSignIn}
               className="h-8 border-gray-200 bg-white text-[12px] font-medium text-gray-700"
             >
               <Icon

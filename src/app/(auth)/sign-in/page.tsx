@@ -44,8 +44,6 @@ const SignIn = () => {
             provider: "github",
             callbackURL: "/",
         });
-
-        console.log(data, error);
     };
 
     return (
