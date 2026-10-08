@@ -5,11 +5,34 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@heroui/react";
 import { getBanglaDate } from "@/utils/dateConvertion";
+import { useSession } from "@/lib/auth-client";
+import UserProfile from "../Profile/UserProfile";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+   const { data: session } = useSession();
+   console.log(session);
 
+  const actionButtons = <>
+    <Link
+      href="/sign-in"
+      className="text-[15px] font-semibold text-gray-800 transition hover:text-green-700"
+    >
+      সাইন ইন
+    </Link>
+
+    <Link href={"/sign-up"}>
+      <Button
+        as={Link}
+        href="/sign-up"
+        radius="sm"
+        className="h-10 min-w-[104px] bg-green-700 px-5 text-[15px] font-semibold text-white shadow-[0_3px_5px_rgba(0,0,0,0.2)] hover:bg-green-800"
+      >
+        সাইন আপ
+      </Button>
+    </Link>
+  </>
 
   return (
     <nav className="w-full border-b border-gray-100 bg-white">
@@ -45,28 +68,15 @@ export default function Header() {
 
         {/* ================= DESKTOP ACTIONS ================= */}
         <div className="hidden items-center gap-5 sm:flex">
-          <Link
-            href="/sign-in"
-            className="text-[15px] font-semibold text-gray-800 transition hover:text-green-700"
-          >
-            সাইন ইন
-          </Link>
-
-          <Link href={"/sign-up"}>
-          <Button
-            as={Link}
-            href="/sign-up"
-            radius="sm"
-            className="h-10 min-w-[104px] bg-green-700 px-5 text-[15px] font-semibold text-white shadow-[0_3px_5px_rgba(0,0,0,0.2)] hover:bg-green-800"
-          >
-            সাইন আপ
-          </Button>
-          </Link>
+          {/* {actionButtons} */}
+          {
+            session ? <UserProfile /> : actionButtons
+          }
         </div>
 
         {/* ================= MOBILE MENU BUTTON ================= */}
         <div className="flex items-center gap-2 sm:hidden">
-          <Link href="/sign-up">
+          {/* <Link href="/sign-up">
           <Button
             as={Link}
             href="/sign-up"
@@ -76,8 +86,9 @@ export default function Header() {
           >
             সাইন আপ
           </Button>
-          </Link>
-          
+          </Link> */}
+          {actionButtons}
+
 
           <button
             type="button"
