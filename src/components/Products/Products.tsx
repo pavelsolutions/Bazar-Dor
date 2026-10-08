@@ -1,13 +1,13 @@
-;import { getProducts } from "@/api/products";
+; import { getProducts } from "@/api/products";
 import { IProduct } from "@/types/products";
 import ProductCard from "./ProductCard";
 import { bnNumber } from "@/utils/number";
 
 
-const Products = async() => {
-    const products:IProduct[] = await getProducts();
-    const increasedProducts = products.filter((product)=> product.today > product.yesterday);
-    const decreasedProducts = products.filter((product)=> product.today < product.yesterday);
+const Products = async () => {
+  const products: IProduct[] = await getProducts();
+  const increasedProducts = products.filter((product) => product.today > product.yesterday);
+  const decreasedProducts = products.filter((product) => product.today < product.yesterday);
   return (
     <section className="bg-[#f4f7f3] px-3 py-4 sm:px-5 sm:py-5">
       <div className="mx-auto max-w-[1164px]">
@@ -23,8 +23,8 @@ const Products = async() => {
         {/* Cards */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {/* Card 1 */}
-          {increasedProducts.map((product) => 
-          <ProductCard key={product.id} product={product} />
+          {increasedProducts.map((product) =>
+            <ProductCard key={product.id} product={product} />
           )}
         </div>
 
@@ -40,13 +40,16 @@ const Products = async() => {
         {/* Cards */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {/* Card 1 */}
-          {decreasedProducts.map((product) => 
-          <ProductCard key={product.id} product={product} />
+          {decreasedProducts.map((product) =>
+            <ProductCard key={product.id} product={product} />
           )}
         </div>
 
-          {/* ================= HEADER ================= */}
-        <div className="mb-5 mt-5">
+        {/* ================= HEADER ================= */}
+        <div
+          id="products"
+          className="scroll-mt-30 mb-5 mt-5"
+        >
           <h2 className="text-[26px] font-bold leading-8 text-gray-900 sm:text-[28px]">
             সব পণ্য
           </h2>
@@ -84,8 +87,8 @@ const Products = async() => {
         {/* Cards */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {/* Card 1 */}
-          {products.map((product) => 
-          <ProductCard key={product.id} product={product} />
+          {products.map((product) =>
+            <ProductCard key={product.id} product={product} />
           )}
         </div>
       </div>

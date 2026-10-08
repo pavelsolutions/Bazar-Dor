@@ -37,13 +37,20 @@ const SignIn = () => {
             provider: "google",
             callbackURL: "/",
         });
+    };
+
+    const handleGithubSignIn = async () => {
+        const { data, error } = await signIn.social({
+            provider: "github",
+            callbackURL: "/",
+        });
 
         console.log(data, error);
     };
 
     return (
         <main className="min-h-[calc(100vh-68px)] bg-[#f4f7f3] px-4 py-8 sm:py-10">
-            <div className="mx-auto w-full max-w-[323px]">
+            <div className="mx-auto w-full max-w-[400px]">
 
                 {/* Header */}
                 <div className="mb-5 text-center">
@@ -51,7 +58,7 @@ const SignIn = () => {
                         সাইন ইন
                     </h1>
 
-                    <p className="mt-1 text-[11px] text-gray-500">
+                    <p className="mt-1 text-[14px] text-gray-500">
                         বিস্তারিত দাম, বাজারের তথ্য ও ফিচার দেখতে অ্যাকাউন্টে ঢুকুন।
                     </p>
                 </div>
@@ -78,16 +85,16 @@ const SignIn = () => {
                                     return null;
                                 }}
                             >
-                                <Label className="text-[11px] font-medium text-gray-800">
+                                <Label className="text-[14px] font-medium text-gray-800">
                                     ইমেইল
                                 </Label>
 
                                 <Input
                                     placeholder="you@example.com"
-                                    className="mt-1 h-8 rounded-lg border-gray-200 bg-white text-[11px]"
+                                    className="mt-1 h-8 rounded-lg border-gray-200 bg-white text-[14px]"
                                 />
 
-                                <FieldError className="text-[10px]" />
+                                <FieldError className="text-[14px]" />
                             </TextField>
 
                             {/* Password */}
@@ -104,23 +111,23 @@ const SignIn = () => {
                                     return null;
                                 }}
                             >
-                                <Label className="text-[11px] font-medium text-gray-800">
+                                <Label className="text-[14px] font-medium text-gray-800">
                                     পাসওয়ার্ড
                                 </Label>
 
                                 <Input
                                     placeholder="সিক্রেট কোডটি দিন"
-                                    className="mt-1 h-8 rounded-lg border-gray-200 bg-white text-[11px]"
+                                    className="mt-1 h-8 rounded-lg border-gray-200 bg-white text-[14px]"
                                 />
 
-                                <FieldError className="text-[10px]" />
+                                <FieldError className="text-[14px]" />
                             </TextField>
 
                             {/* Submit */}
                             <Button
                                 type="submit"
                                 radius="sm"
-                                className="mt-0.5 h-8 w-full bg-green-700 text-[11px] font-semibold text-white shadow-[0_2px_4px_rgba(0,0,0,0.18)] hover:bg-green-800"
+                                className="mt-0.5 h-8 w-full bg-green-700 text-[14px] font-semibold text-white shadow-[0_2px_4px_rgba(0,0,0,0.18)] hover:bg-green-800"
                             >
                                 সাইন ইন
                             </Button>
@@ -131,7 +138,7 @@ const SignIn = () => {
                     <div className="my-3 flex items-center gap-2">
                         <div className="h-px flex-1 bg-gray-200" />
 
-                        <span className="text-[9px] text-gray-500">
+                        <span className="text-[11px] text-gray-500">
                             অথবা
                         </span>
 
@@ -142,10 +149,11 @@ const SignIn = () => {
                     <div className="grid grid-cols-2 gap-2">
                         <Button
                             type="button"
+                            onClick={handleGoogleSignIn}
                             variant="bordered"
                             radius="sm"
                             onPress={handleGoogleSignIn}
-                            className="h-8 border-gray-200 bg-white text-[9px] font-medium text-gray-700"
+                            className="h-8 border-gray-200 bg-white text-[12px] font-medium text-gray-700"
                         >
                             <Icon
                                 icon="devicon:google"
@@ -156,9 +164,11 @@ const SignIn = () => {
 
                         <Button
                             type="button"
+                            onClick={handleGithubSignIn}
                             variant="bordered"
                             radius="sm"
-                            className="h-8 border-gray-200 bg-white text-[9px] font-medium text-gray-700"
+                            onPress={handleGithubSignIn}
+                            className="h-8 border-gray-200 bg-white text-[12px] font-medium text-gray-700"
                         >
                             <Icon
                                 icon="mdi:github"
@@ -169,7 +179,7 @@ const SignIn = () => {
                     </div>
 
                     {/* Sign Up */}
-                    <p className="mt-4 text-center text-[10px] text-gray-600">
+                    <p className="mt-4 text-center text-[12px] text-gray-600">
                         অ্যাকাউন্ট নেই?{" "}
                         <Link
                             href="/sign-up"
@@ -184,7 +194,7 @@ const SignIn = () => {
                 <div className="mt-4 text-center">
                     <Link
                         href="/"
-                        className="text-[10px] text-gray-500 transition hover:text-green-700"
+                        className="text-[14px] text-gray-500 transition hover:text-green-700"
                     >
                         ← হোম পেজে ফিরে যান
                     </Link>

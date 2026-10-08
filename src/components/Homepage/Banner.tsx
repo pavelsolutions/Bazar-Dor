@@ -26,7 +26,7 @@ const Banner = () => {
 
           {/* Button */}
           <Link
-            href="/market"
+            href="#products"
             className="mt-6 inline-flex rounded-md bg-green-700 px-5 py-2.5 text-[15px] font-semibold text-white shadow-[0_3px_5px_rgba(0,0,0,0.2)] transition hover:bg-green-800"
           >
             সব পণ্য দেখুন
