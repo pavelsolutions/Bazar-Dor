@@ -14,20 +14,6 @@ import { Icon } from "@iconify/react";
 import { signIn } from "@/lib/auth-client";
 
 const SignIn = () => {
-    //   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
-    //     const formData = new FormData(e.currentTarget);
-    //     const email = formData.get("email")?.toString() ?? "";
-    //     const password = formData.get("password")?.toString() ?? "";
-    //     const { data, error } = await signIn.email({
-    //       email,
-    //       password,
-    //       rememberMe: true,
-    //       callbackURL: "/",
-    //     });
-
-    //     console.log(data, error);
-    //   };
 
     const onSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
