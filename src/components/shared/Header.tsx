@@ -21,16 +21,12 @@ export default function Header() {
       সাইন ইন
     </Link>
 
-    <Link href={"/sign-up"}>
-      <Button
-        as={Link}
-        href="/sign-up"
-        radius="sm"
-        className="h-10 min-w-[104px] bg-green-700 px-5 text-[15px] font-semibold text-white shadow-[0_3px_5px_rgba(0,0,0,0.2)] hover:bg-green-800"
-      >
-        সাইন আপ
-      </Button>
-    </Link>
+    <Link
+  href="/sign-up"
+  className="inline-flex h-10 w-[104px] items-center justify-center bg-green-700 text-[14px] font-medium text-white shadow-sm transition hover:bg-green-800"
+>
+  সাইন আপ
+</Link>
   </>
 
   return (

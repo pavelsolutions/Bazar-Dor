@@ -11,11 +11,12 @@ export interface IPriceChange {
 }
 
 export interface IMarket {
-  market: string;
+  id: string;
+  name: string;
   district: string;
-  minPrice: number;
-  maxPrice: number;
-  price: number;
+  today: number;
+  min: number;
+  max: number;
 }
 
 export interface IProduct {
@@ -25,7 +26,7 @@ export interface IProduct {
   category: string;
   categoryNameBn: string;
   categoryIcon: string;
-  unit: string;
+  unit: Unit;
   image: string;
   today: number;
   yesterday: number;

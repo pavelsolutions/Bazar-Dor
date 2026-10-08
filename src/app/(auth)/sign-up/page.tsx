@@ -205,7 +205,6 @@ const SignUp = () => {
               <Fieldset.Actions className="mt-3">
                 <Button
                   type="submit"
-                  radius="sm"
                   className="h-8 w-full bg-green-700 text-[14px] font-semibold text-white shadow-[0_2px_4px_rgba(0,0,0,0.18)] hover:bg-green-800"
                 >
                   অ্যাকাউন্ট তৈরি করুন
@@ -230,8 +229,6 @@ const SignUp = () => {
             <Button
               type="button"
               onClick={handleGoogleSignIn}
-              variant="bordered"
-              radius="sm"
               onPress={handleGoogleSignIn}
               className="h-8 border-gray-200 bg-white text-[12px] font-medium text-gray-700"
             >
@@ -245,8 +242,6 @@ const SignUp = () => {
             <Button
               type="button"
               onClick={handleGithubSignIn}
-              variant="bordered"
-              radius="sm"
               onPress={handleGithubSignIn}
               className="h-8 border-gray-200 bg-white text-[12px] font-medium text-gray-700"
             >
