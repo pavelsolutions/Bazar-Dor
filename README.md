@@ -17,7 +17,7 @@ BazarDor is a responsive Bengali-language web application that helps users explo
 
 **বাজার দর (BazarDor)** is designed to make everyday market-price information easier to access for Bengali-speaking users.
 
-Users can explore essential products, browse categories, view price changes, compare prices across markets, and manage their profiles through a responsive interface.
+Users can explore essential products, browse different categories, view price changes, compare prices across markets, and manage their profiles through a responsive interface.
 
 ## ✨ Key Features
 
@@ -32,7 +32,7 @@ Users can explore essential products, browse categories, view price changes, com
 - 🔔 **Toast Notifications** — Show feedback for authentication, validation, and profile updates.
 - 🧭 **Custom Error Pages** — Provide a friendly message and a link back home for unknown routes.
 
-> Update this list to match the features you have actually implemented.
+> Keep the features listed here aligned with what you have actually implemented.
 
 ## 🧰 Technologies Used
 
@@ -53,11 +53,13 @@ Users can explore essential products, browse categories, view price changes, com
 ### Base URLs
 
 **Primary API**
+
 ```text
 https://api.api-store.workers.dev/api/bazardor
 ```
 
 **Alternative API**
+
 ```text
 https://api.abcz.workers.dev/api/bazardor
 ```
@@ -118,7 +120,7 @@ Create a `screenshots` folder in your repository and add your screenshots.
 
 ### 1. Clone the Repository
 
-Replace the placeholders with your actual repository details.
+Replace the placeholders with your actual GitHub repository details.
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
@@ -140,7 +142,7 @@ BETTER_AUTH_MD_URI=your_mongodb_connection_string
 BETTER_AUTH_SECRET=your_random_secret
 BETTER_AUTH_URL=http://localhost:3000
 
-# Add these only if your authentication setup uses them.
+# Add these only if used in your authentication configuration.
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
 
@@ -165,13 +167,15 @@ npm run build
 npm run start
 ```
 
+---
+
 ## 🚢 Deploy with Vercel CLI
 
 You can deploy BazarDor directly from your terminal using the Vercel CLI.
 
 ### 1. Install Vercel CLI
 
-Install it globally using npm:
+Install Vercel CLI globally using npm:
 
 ```bash
 npm install --global vercel
@@ -183,7 +187,7 @@ Verify the installation:
 vercel --version
 ```
 
-Alternatively, run Vercel CLI without a global installation:
+Alternatively, use Vercel CLI without a global installation:
 
 ```bash
 npx vercel --version
@@ -195,17 +199,17 @@ npx vercel --version
 vercel login
 ```
 
-Follow the prompts to authenticate your Vercel account.
+Follow the instructions in your terminal to log in to your Vercel account.
 
 ### 3. Link Your Project
 
-Run this command from the root directory of your project:
+Run this command from your project root directory:
 
 ```bash
 vercel link
 ```
 
-Follow the prompts to link the local folder to a Vercel project. You can create a new Vercel project if needed.
+Follow the prompts to link your local project to a Vercel project. You can create a new project if needed.
 
 ### 4. Configure Environment Variables
 
@@ -213,21 +217,23 @@ Open:
 
 **Vercel Dashboard → Project → Settings → Environment Variables**
 
-Add the required environment variables for Production. Add them to Preview or Development too if those environments need them.
+Add the environment variables required by your application, including your MongoDB connection string and Better Auth configuration.
 
-You can inspect configured environment variables with:
+If Google or GitHub authentication is enabled, configure the corresponding OAuth credentials as well.
+
+To view configured environment variables:
 
 ```bash
 vercel env ls
 ```
 
-Pull environment variables into your local `.env.local` file:
+To pull environment variables into your local `.env.local` file:
 
 ```bash
 vercel env pull .env.local
 ```
 
-Keep environment variables private. Never commit secrets to GitHub.
+> Never commit `.env.local` or expose database credentials, OAuth secrets, or other private environment variables.
 
 ### 5. Deploy a Preview
 
@@ -235,43 +241,46 @@ Keep environment variables private. Never commit secrets to GitHub.
 vercel
 ```
 
-Vercel will build and deploy a preview version of your application. Open the generated URL and test the site.
+Vercel will build and deploy a preview version of your application. Open the generated URL and test the website.
 
 ### 6. Deploy to Production
 
-First, build the project locally:
+First, verify that the production build succeeds:
 
 ```bash
 npm run build
 ```
 
-If the build succeeds, deploy to production:
+Then deploy the application to production:
 
 ```bash
 vercel --prod
 ```
 
-### 7. Verify the Live Website
+### 7. Verify the Deployment
 
-After deployment, check:
+After deployment, check the following:
 
-- Home page and product data
-- Category filtering and sorting
-- Product detail pages after directly refreshing the browser
-- Sign-in, sign-up, social login, and sign-out
-- Protected-route behavior
-- Profile updates
-- Mobile, tablet, and desktop layouts
+- Home page and product data load correctly.
+- Category filtering and product sorting work.
+- Product detail pages work after directly refreshing the browser.
+- Sign-in, sign-up, and configured social login work.
+- Protected routes require authentication.
+- Profile updates work.
+- The layout works on mobile, tablet, and desktop.
+- Unknown routes display a friendly 404 page.
 
-If you use Google or GitHub OAuth, configure the correct callback URL for your deployed domain.
+For OAuth login, make sure the callback URLs are configured for your deployed domain.
 
-For GitHub, the callback commonly follows this pattern:
+For GitHub, the callback URL commonly follows this format:
 
 ```text
 https://YOUR_DOMAIN/api/auth/callback/github
 ```
 
 Use the callback URL required by your Better Auth configuration.
+
+---
 
 ## 🗺️ Application Routes
 
@@ -306,24 +315,6 @@ BazarDor aims to provide a consistent experience across different screen sizes.
 - Server-side session verification for protected resources.
 
 Keep database credentials, OAuth secrets, and `.env.local` private.
-
-## ✅ Final Checklist
-
-- [ ] Responsive layout works on mobile, tablet, and desktop.
-- [ ] API data loads correctly.
-- [ ] Category filtering works.
-- [ ] Product details display the correct information.
-- [ ] Sorting compares numeric prices correctly.
-- [ ] Loading skeletons and empty states work.
-- [ ] Sign-up and sign-in work.
-- [ ] Configured social login works.
-- [ ] Protected routes require authentication.
-- [ ] Profile updates work.
-- [ ] Unknown routes show a friendly 404 page.
-- [ ] Production build succeeds.
-- [ ] Deployment works after refreshing dynamic routes.
-- [ ] Live and GitHub links have been added.
-- [ ] Screenshots have been added, if available.
 
 ## 🛣️ Future Improvements
 
