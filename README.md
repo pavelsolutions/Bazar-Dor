@@ -1,87 +1,89 @@
+
 <div align="center">
 
 # 🛒 বাজার দর | BazarDor
 
-### বাংলাদেশের নিত্যপ্রয়োজনীয় পণ্যের বাজারদর জানুন সহজেই
+### বাংলাদেশের নিত্যপ্রয়োজনীয় পণ্যের বাজারদর জানুন সহজেই।
 
-BazarDor is a responsive, Bengali-first web application for exploring everyday product prices, comparing market information, browsing categories, and managing user accounts.
+BazarDor is a responsive Bengali-language web application that helps users explore everyday product prices, browse categories, compare market-wise prices, and manage their accounts through a simple and user-friendly interface.
 
-<p>
-  <img src="https://img.shields.io/badge/Next.js-App%20Router-black?logo=next.js" alt="Next.js" />
-  <img src="https://img.shields.io/badge/React-UI-61DAFB?logo=react&logoColor=black" alt="React" />
-  <img src="https://img.shields.io/badge/TypeScript-Type%20Safety-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-Styling-06B6D4?logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/Authentication-Better%20Auth-222222" alt="Better Auth" />
-  <img src="https://img.shields.io/badge/Deployment-Vercel-black?logo=vercel" alt="Vercel" />
-</p>
-
-<!-- Replace these URLs with your actual deployed website and GitHub repository. -->
-[Live Demo](https://YOUR_LIVE_URL) · [GitHub Repository](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY)
+[🌐 Live Demo](YOUR_LIVE_URL) · [💻 GitHub Repository](YOUR_GITHUB_REPOSITORY_URL)
 
 </div>
 
 ---
 
-## 📖 About BazarDor
+## 📖 About the Project
 
-**বাজার দর (BazarDor)** helps users explore prices of everyday essentials through a simple Bengali-language interface. Users can browse products by category, view price changes, sort products by price, and inspect market-wise prices where data is available.
+**বাজার দর (BazarDor)** is designed to make everyday market-price information easier to access for Bengali-speaking users.
 
-The interface is designed for mobile, tablet, and desktop screens, with clear product cards, loading states, helpful empty states, and account management.
+Users can explore essential products, browse different categories, view price changes, compare prices across markets, and manage their profiles through a responsive interface.
 
 ## ✨ Key Features
 
-1. **📈 Daily Price Trends** — Highlight products whose prices have increased or decreased.
-2. **🗂️ Category-Based Browsing** — Explore products by category and navigate between category pages.
-3. **↕️ Numeric Price Sorting** — Sort products by default order, lowest price, or highest price.
-4. **🔎 Product Details and Market Comparison** — Review a product's summary, unit, minimum, maximum, average, and market-wise prices when supplied by the API.
-5. **🔐 Authentication** — Register and sign in with email/password, with Google and GitHub sign-in available when configured.
-6. **👤 Profile Management** — View account details and update the profile name.
-7. **📱 Responsive Design** — Layouts adapt to mobile, tablet, and desktop screens.
-8. **⏳ Loading and Empty States** — Skeleton loaders and helpful messages improve the user experience during loading or when no products are available.
-9. **🔔 User Feedback** — Toast notifications communicate authentication, validation, and profile-update results.
-10. **🧭 Friendly Navigation and Error Pages** — Clear navigation and a home-page link for unknown or unavailable routes.
+- 📈 **Daily Price Trends** — Explore products with increasing and decreasing prices.
+- 🗂️ **Category-Based Browsing** — Browse products by category.
+- ↕️ **Product Sorting** — Sort products by default order, lowest price, or highest price.
+- 🛍️ **Product Details** — View product information, units, price summaries, and market-wise prices.
+- 🔐 **Authentication** — Register and sign in with email and password, plus configured Google and GitHub login.
+- 👤 **Profile Management** — View account information and update your name.
+- 📱 **Responsive Design** — Designed for mobile, tablet, and desktop screens.
+- ⏳ **Loading and Empty States** — Display loading skeletons and helpful messages when data is unavailable.
+- 🔔 **Toast Notifications** — Show feedback for authentication, validation, and profile updates.
+- 🧭 **Custom Error Pages** — Provide a friendly message and a link back home for unknown routes.
 
 ## 🧰 Technologies Used
 
 | Technology | Purpose |
-| --- | --- |
-| [Next.js App Router](https://nextjs.org/docs/app) | Pages, layouts, routing, and server rendering |
-| [React](https://react.dev/) | Reusable user-interface components |
-| [TypeScript](https://www.typescriptlang.org/) | Type-safe application development |
-| [Tailwind CSS](https://tailwindcss.com/) | Responsive styling |
-| [HeroUI](https://www.heroui.com/) | UI components |
-| [Better Auth](https://www.better-auth.com/) | Authentication and session management |
-| [MongoDB](https://www.mongodb.com/) | Authentication database |
-| [react-hot-toast](https://react-hot-toast.com/) | Toast notifications, if used in the current implementation |
-| [Vercel](https://vercel.com/) | Deployment |
+|---|---|
+| Next.js App Router | Application structure and routing |
+| React | UI components |
+| TypeScript | Type-safe development |
+| Tailwind CSS | Responsive styling |
+| HeroUI | UI components |
+| Better Auth | Authentication and session management |
+| MongoDB | Database for authentication |
+| Vercel | Deployment |
 
-> Keep this list aligned with the packages and features actually used in your repository. Remove any technology that is not installed or implemented.
+> Keep only the technologies that are actually used in your project.
 
-## 🔌 API Reference
+## 🔌 API Documentation
 
-BazarDor uses the following API base URLs:
+### Base URLs
 
-- **Primary:** `https://api.api-store.workers.dev/api/bazardor`
-- **Alternative:** `https://api.abcz.workers.dev/api/bazardor`
+**Primary API**
+```text
+https://api.api-store.workers.dev/api/bazardor
+```
 
-| Purpose | Endpoint |
-| --- | --- |
-| All products | `/products` |
-| Filter products by category | `/products?category=chal` |
-| Get one product | `/products/1` |
-| All categories | `/categories` |
-| Get one category | `/categories/chal` |
+**Alternative API**
+```text
+https://api.abcz.workers.dev/api/bazardor
+```
 
-Example:
+### Available Endpoints
 
-```ts
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/products` | Get all products |
+| GET | `/products?category=chal` | Filter products by category |
+| GET | `/products/1` | Get a single product |
+| GET | `/categories` | Get all categories |
+| GET | `/categories/chal` | Get a single category |
+
+### Example API Request
+
+```typescript
 const API_BASE_URL =
   "https://api.api-store.workers.dev/api/bazardor";
 
 export async function getProducts() {
-  const response = await fetch(`${API_BASE_URL}/products`, {
-    next: { revalidate: 3600 },
-  });
+  const response = await fetch(
+    `${API_BASE_URL}/products`,
+    {
+      next: { revalidate: 3600 },
+    }
+  );
 
   if (!response.ok) {
     throw new Error("Failed to fetch products");
@@ -91,162 +93,109 @@ export async function getProducts() {
 }
 ```
 
-If the primary API is unavailable, the alternative base URL can be used. Confirm the response shape before relying on API fields in the UI.
-
 ## 🖼️ Screenshots
 
-Add screenshots from your running application to make the repository easier to explore.
+Add screenshots of your application to showcase the interface.
 
-<!--
-Create a `screenshots/` directory and add your screenshots, then uncomment and update these examples.
+Create a `screenshots` folder in your repository and add your screenshots.
 
-![BazarDor Home Page](./screenshots/home.png)
-![BazarDor Category Page](./screenshots/category.png)
-![BazarDor Product Details](./screenshots/product-details.png)
-![BazarDor Profile Page](./screenshots/profile.png)
--->
+```markdown
+![Home Page](./screenshots/home.png)
+![Category Page](./screenshots/category.png)
+![Product Details](./screenshots/product-details.png)
+![Profile Page](./screenshots/profile.png)
+```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js version supported by the Next.js version used in this project
+- Node.js
 - npm
-- A MongoDB database for authentication
-- OAuth credentials for Google and/or GitHub if social login is enabled
+- MongoDB database for authentication
+- OAuth credentials if Google or GitHub login is enabled
 
-### 1. Clone the repository
-
-Replace the placeholders with your actual GitHub username and repository name.
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-cd YOUR_REPOSITORY
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd YOUR_REPOSITORY_NAME
 ```
 
-### 2. Install dependencies
+### 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Configure environment variables
+### 3. Configure Environment Variables
 
-Create a `.env.local` file in the project root. Add the variables required by your local Better Auth and OAuth configuration.
+Create a `.env.local` file in the project root.
 
 ```env
 BETTER_AUTH_MD_URI=your_mongodb_connection_string
-BETTER_AUTH_SECRET=your_long_random_secret
+BETTER_AUTH_SECRET=your_random_secret
 BETTER_AUTH_URL=http://localhost:3000
 
-# Add these only if the corresponding social providers are configured.
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
+
 GITHUB_CLIENT_ID=your_github_client_id
 GITHUB_CLIENT_SECRET=your_github_client_secret
 ```
 
-> **Important:** Environment variable names depend on your current auth configuration. Keep `.env.local` private, never commit secrets, and check the variable names used by your code before running the app.
+> Use the exact environment variable names configured in your application. Add only the variables you need. Never commit `.env.local` or expose your credentials publicly.
 
-### 4. Run the development server
+### 4. Run the Development Server
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 5. Check the production build
+### 5. Build for Production
 
 ```bash
 npm run build
 npm run start
 ```
 
-Resolve build errors before deploying.
-
-## 🗺️ Main Application Routes
+## 🗺️ Application Routes
 
 | Route | Description |
-| --- | --- |
-| `/` | Home page with price trends and all products |
-| `/category/[slug]` | Products in a selected category |
-| `/product/[slug]` | Product details and market-wise prices; login required |
+|---|---|
+| `/` | Home page with price trends and products |
+| `/category/[slug]` | Products filtered by category |
+| `/product/[slug]` | Product details and market prices |
 | `/signin` | Sign-in page |
 | `/signup` | Registration page |
-| `/profile` | User profile and account information |
-| `/profile/update` | Profile name update form, if implemented |
-| `/not-found` | Optional custom not-found route; Next.js `not-found.tsx` is also supported |
+| `/profile` | User profile |
+| `/profile/update` | Update profile information |
 
-> Use the actual route names from your project. If your app uses `/sign-in` and `/sign-up` rather than `/signin` and `/signup`, update this table accordingly.
+> Update these paths if your application uses different route names.
 
 ## 📱 Responsive Design
 
-The application is designed to support:
+BazarDor aims to provide a consistent experience across different screen sizes.
 
-- **Mobile:** Single-column or compact product layouts and usable navigation.
-- **Tablet:** Flexible two-column layouts where appropriate.
-- **Desktop:** Multi-column product grids and wider content containers.
-- **All sizes:** Readable Bengali text, usable controls, and no unintended horizontal overflow.
+- **Mobile:** Compact product cards and usable navigation.
+- **Tablet:** Flexible product grids and layouts.
+- **Desktop:** Multi-column product grids and wider content areas.
+- **All devices:** Readable Bengali text and accessible controls.
 
 ## 🔐 Authentication and Security
 
-- Email/password authentication through Better Auth.
-- Google and GitHub login when provider credentials are configured.
-- Toast messages for sign-in, sign-up, sign-out, and validation outcomes.
-- Protected product details and profile functionality where required.
-- Server-side session checks for protected data and routes.
-- Secrets stored in environment variables rather than source code.
+- Email and password authentication through Better Auth.
+- Google and GitHub login when configured.
+- Toast feedback for login, registration, logout, and validation.
+- Protected product details for authenticated users.
+- Secure handling of environment variables.
+- Server-side session verification for protected resources.
 
-OAuth callback URLs must match the provider configuration for each environment. For example, the GitHub callback URL commonly follows:
+Configure OAuth callback URLs correctly for your deployment domain.
 
-```text
-https://YOUR_DOMAIN/api/auth/callback/github
-```
 
-For local development, use the local callback URL required by your Better Auth setup.
-
-## 🚢 Deployment
-
-This project can be deployed to [Vercel](https://vercel.com/).
-
-1. Push the latest code to GitHub.
-2. Import the repository into Vercel.
-3. Add the required environment variables in Vercel Project Settings.
-4. Configure OAuth callback URLs for the deployed domain.
-5. Deploy and test the home, category, product, sign-in, sign-up, and profile routes.
-6. Reload dynamic routes directly in the browser to verify that they do not return unexpected 404 errors.
-
-## ✅ Pre-Submission Checklist
-
-- [ ] Test the layout on mobile, tablet, and desktop.
-- [ ] Verify the primary API and, if needed, the alternative API.
-- [ ] Confirm category filtering and product detail data.
-- [ ] Confirm sorting compares numeric prices correctly, including Bengali-formatted display values.
-- [ ] Test skeleton loaders, empty states, and unknown routes.
-- [ ] Test email/password authentication and configured social login providers.
-- [ ] Test protected-route redirects and toast notifications.
-- [ ] Test profile name updates.
-- [ ] Run `npm run build` successfully.
-- [ ] Deploy the application and test direct page reloads.
-- [ ] Make at least **8 meaningful Git commits** with clear messages.
-- [ ] Replace all placeholder URLs and add screenshots.
-- [ ] Verify the README matches the features actually implemented.
-
-### Suggested meaningful commit messages
-
-```text
-chore: initialize Next.js project
-feat: build responsive navbar and category navigation
-feat: add product price ticker and hero section
-feat: display rising and falling product prices
-feat: implement product listing and numeric sorting
-feat: add category and product detail pages
-feat: integrate Better Auth and social login
-feat: add profile update functionality
-fix: handle loading, empty, and not-found states
-docs: improve BazarDor README
-```
 
 ## 🛣️ Future Improvements
 
@@ -256,18 +205,9 @@ docs: improve BazarDor README
 - Add a favorites or watchlist feature.
 - Improve accessibility and automated testing.
 
-## 🤝 Contributing
-
-Suggestions and improvements are welcome.
-
-1. Fork the repository.
-2. Create a branch: `git checkout -b feature/your-feature`.
-3. Commit your changes with a clear message.
-4. Push the branch and open a Pull Request.
-
 ## 📄 License
 
-No license has been specified in this repository yet. Add a `LICENSE` file and update this section if you decide to publish the project under an open-source license.
+No license has been specified yet. Add a `LICENSE` file if you decide to publish the project under an open-source license.
 
 ---
 
