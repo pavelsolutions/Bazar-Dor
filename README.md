@@ -17,7 +17,7 @@ BazarDor is a responsive Bengali-language web application that helps users explo
 
 **বাজার দর (BazarDor)** is designed to make everyday market-price information easier to access for Bengali-speaking users.
 
-Users can explore essential products, browse different categories, view price changes, compare prices across markets, and manage their profiles through a responsive interface.
+Users can explore essential products, browse categories, view price changes, compare prices across markets, and manage their profiles through a responsive interface.
 
 ## ✨ Key Features
 
@@ -25,12 +25,14 @@ Users can explore essential products, browse different categories, view price ch
 - 🗂️ **Category-Based Browsing** — Browse products by category.
 - ↕️ **Product Sorting** — Sort products by default order, lowest price, or highest price.
 - 🛍️ **Product Details** — View product information, units, price summaries, and market-wise prices.
-- 🔐 **Authentication** — Register and sign in with email and password, plus configured Google and GitHub login.
+- 🔐 **Authentication** — Register and sign in with email and password, plus Google and GitHub login when configured.
 - 👤 **Profile Management** — View account information and update your name.
 - 📱 **Responsive Design** — Designed for mobile, tablet, and desktop screens.
-- ⏳ **Loading and Empty States** — Display loading skeletons and helpful messages when data is unavailable.
+- ⏳ **Loading and Empty States** — Display skeleton loaders and helpful messages when data is unavailable.
 - 🔔 **Toast Notifications** — Show feedback for authentication, validation, and profile updates.
 - 🧭 **Custom Error Pages** — Provide a friendly message and a link back home for unknown routes.
+
+> Update this list to match the features you have actually implemented.
 
 ## 🧰 Technologies Used
 
@@ -42,10 +44,9 @@ Users can explore essential products, browse different categories, view price ch
 | Tailwind CSS | Responsive styling |
 | HeroUI | UI components |
 | Better Auth | Authentication and session management |
-| MongoDB | Database for authentication |
-| Vercel | Deployment |
-
-> Keep only the technologies that are actually used in your project.
+| MongoDB | Authentication database |
+| Vercel CLI | Deployment from the terminal |
+| Vercel | Hosting and deployment |
 
 ## 🔌 API Documentation
 
@@ -110,16 +111,18 @@ Create a `screenshots` folder in your repository and add your screenshots.
 
 ### Prerequisites
 
-- Node.js
+- Node.js version supported by your Next.js version
 - npm
 - MongoDB database for authentication
 - OAuth credentials if Google or GitHub login is enabled
 
 ### 1. Clone the Repository
 
+Replace the placeholders with your actual repository details.
+
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-cd YOUR_REPOSITORY_NAME
+git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+cd YOUR_REPOSITORY
 ```
 
 ### 2. Install Dependencies
@@ -137,6 +140,7 @@ BETTER_AUTH_MD_URI=your_mongodb_connection_string
 BETTER_AUTH_SECRET=your_random_secret
 BETTER_AUTH_URL=http://localhost:3000
 
+# Add these only if your authentication setup uses them.
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
 
@@ -144,7 +148,7 @@ GITHUB_CLIENT_ID=your_github_client_id
 GITHUB_CLIENT_SECRET=your_github_client_secret
 ```
 
-> Use the exact environment variable names configured in your application. Add only the variables you need. Never commit `.env.local` or expose your credentials publicly.
+> Use the exact environment variable names configured in your application. Add only the variables you need. Never commit `.env.local` or expose credentials publicly.
 
 ### 4. Run the Development Server
 
@@ -160,6 +164,114 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 npm run build
 npm run start
 ```
+
+## 🚢 Deploy with Vercel CLI
+
+You can deploy BazarDor directly from your terminal using the Vercel CLI.
+
+### 1. Install Vercel CLI
+
+Install it globally using npm:
+
+```bash
+npm install --global vercel
+```
+
+Verify the installation:
+
+```bash
+vercel --version
+```
+
+Alternatively, run Vercel CLI without a global installation:
+
+```bash
+npx vercel --version
+```
+
+### 2. Log In to Vercel
+
+```bash
+vercel login
+```
+
+Follow the prompts to authenticate your Vercel account.
+
+### 3. Link Your Project
+
+Run this command from the root directory of your project:
+
+```bash
+vercel link
+```
+
+Follow the prompts to link the local folder to a Vercel project. You can create a new Vercel project if needed.
+
+### 4. Configure Environment Variables
+
+Open:
+
+**Vercel Dashboard → Project → Settings → Environment Variables**
+
+Add the required environment variables for Production. Add them to Preview or Development too if those environments need them.
+
+You can inspect configured environment variables with:
+
+```bash
+vercel env ls
+```
+
+Pull environment variables into your local `.env.local` file:
+
+```bash
+vercel env pull .env.local
+```
+
+Keep environment variables private. Never commit secrets to GitHub.
+
+### 5. Deploy a Preview
+
+```bash
+vercel
+```
+
+Vercel will build and deploy a preview version of your application. Open the generated URL and test the site.
+
+### 6. Deploy to Production
+
+First, build the project locally:
+
+```bash
+npm run build
+```
+
+If the build succeeds, deploy to production:
+
+```bash
+vercel --prod
+```
+
+### 7. Verify the Live Website
+
+After deployment, check:
+
+- Home page and product data
+- Category filtering and sorting
+- Product detail pages after directly refreshing the browser
+- Sign-in, sign-up, social login, and sign-out
+- Protected-route behavior
+- Profile updates
+- Mobile, tablet, and desktop layouts
+
+If you use Google or GitHub OAuth, configure the correct callback URL for your deployed domain.
+
+For GitHub, the callback commonly follows this pattern:
+
+```text
+https://YOUR_DOMAIN/api/auth/callback/github
+```
+
+Use the callback URL required by your Better Auth configuration.
 
 ## 🗺️ Application Routes
 
@@ -182,7 +294,7 @@ BazarDor aims to provide a consistent experience across different screen sizes.
 - **Mobile:** Compact product cards and usable navigation.
 - **Tablet:** Flexible product grids and layouts.
 - **Desktop:** Multi-column product grids and wider content areas.
-- **All devices:** Readable Bengali text and accessible controls.
+- **All devices:** Readable Bengali text and usable controls.
 
 ## 🔐 Authentication and Security
 
@@ -193,9 +305,25 @@ BazarDor aims to provide a consistent experience across different screen sizes.
 - Secure handling of environment variables.
 - Server-side session verification for protected resources.
 
-Configure OAuth callback URLs correctly for your deployment domain.
+Keep database credentials, OAuth secrets, and `.env.local` private.
 
+## ✅ Final Checklist
 
+- [ ] Responsive layout works on mobile, tablet, and desktop.
+- [ ] API data loads correctly.
+- [ ] Category filtering works.
+- [ ] Product details display the correct information.
+- [ ] Sorting compares numeric prices correctly.
+- [ ] Loading skeletons and empty states work.
+- [ ] Sign-up and sign-in work.
+- [ ] Configured social login works.
+- [ ] Protected routes require authentication.
+- [ ] Profile updates work.
+- [ ] Unknown routes show a friendly 404 page.
+- [ ] Production build succeeds.
+- [ ] Deployment works after refreshing dynamic routes.
+- [ ] Live and GitHub links have been added.
+- [ ] Screenshots have been added, if available.
 
 ## 🛣️ Future Improvements
 
