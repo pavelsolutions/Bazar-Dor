@@ -23,7 +23,7 @@ export default function Header() {
 
     <Link
   href="/sign-up"
-  className="inline-flex h-10 w-[104px] items-center justify-center bg-green-700 text-[14px] font-medium text-white shadow-sm transition hover:bg-green-800"
+  className="inline-flex h-10 w-[104px] items-center justify-center bg-green-700 text-[14px] rounded-md font-medium text-white shadow-sm transition hover:bg-green-800"
 >
   সাইন আপ
 </Link>
