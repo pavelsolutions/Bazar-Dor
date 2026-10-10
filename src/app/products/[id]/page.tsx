@@ -5,6 +5,7 @@ import {
 } from "@/types/products";
 import { bnNumber } from "@/utils/number";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface IProductProps {
   params: Promise<{
@@ -17,32 +18,35 @@ const ProductDetails = async ({ params }: IProductProps) => {
   const product = await getProduct(id);
 
   // ================= PRODUCT NOT FOUND =================
-  if (!product) {
-    return (
-      <main className="flex min-h-[calc(100vh-68px)] items-center justify-center bg-[#f4f7f3] px-4 py-10">
-        <div className="w-full max-w-[500px] text-center">
-          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-[20px] bg-white text-[40px] shadow-sm">
-            🛒
-          </div>
-          <h1 className="mt-6 text-[64px] font-bold leading-none text-green-700">
-            ৪০৪
-          </h1>
-          <h2 className="mt-4 text-[24px] font-bold text-gray-900">
-            পণ্যটি পাওয়া যায়নি
-          </h2>
-          <p className="mx-auto mt-2 max-w-[380px] text-[13px] leading-6 text-gray-500">
-            দুঃখিত, আপনি যে পণ্যটি খুঁজছেন সেটি পাওয়া যায়নি।
-          </p>
-          <Link
-            href="/"
-            className="mt-6 inline-flex h-10 items-center justify-center rounded-lg bg-green-700 px-5 text-[13px] font-medium text-white transition hover:bg-green-800"
-          >
-            হোম পেজে ফিরে যান
-          </Link>
-        </div>
-      </main>
-    );
+    if (!product) {
+    notFound();
   }
+  // if (!product) {
+  //   return (
+  //     <main className="flex min-h-[calc(100vh-68px)] items-center justify-center bg-[#f4f7f3] px-4 py-10">
+  //       <div className="w-full max-w-[500px] text-center">
+  //         <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-[20px] bg-white text-[40px] shadow-sm">
+  //           🛒
+  //         </div>
+  //         <h1 className="mt-6 text-[64px] font-bold leading-none text-green-700">
+  //           ৪০৪
+  //         </h1>
+  //         <h2 className="mt-4 text-[24px] font-bold text-gray-900">
+  //           পণ্যটি পাওয়া যায়নি
+  //         </h2>
+  //         <p className="mx-auto mt-2 max-w-[380px] text-[13px] leading-6 text-gray-500">
+  //           দুঃখিত, আপনি যে পণ্যটি খুঁজছেন সেটি পাওয়া যায়নি।
+  //         </p>
+  //         <Link
+  //           href="/"
+  //           className="mt-6 inline-flex h-10 items-center justify-center rounded-lg bg-green-700 px-5 text-[13px] font-medium text-white transition hover:bg-green-800"
+  //         >
+  //           হোম পেজে ফিরে যান
+  //         </Link>
+  //       </div>
+  //     </main>
+  //   );
+  // }
 
   // ================= PRICE CALCULATION =================
 

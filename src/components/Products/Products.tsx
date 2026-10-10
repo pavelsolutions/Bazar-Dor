@@ -6,13 +6,15 @@ import ProductList from "./ProductList";
 const Products = async () => {
   const products: IProduct[] = await getProducts();
 
-  const increasedProducts = products.filter(
-    (product) => product.today > product.yesterday
-  );
+const increasedProducts = products
+  .filter((product) => product.change.dir === "up")
+  .toSorted((a, b) => b.change.pct - a.change.pct)
+  .slice(0, 6);
 
-  const decreasedProducts = products.filter(
-    (product) => product.today < product.yesterday
-  );
+  const decreasedProducts = products
+  .filter((product) => product.change.dir === "down")
+  .toSorted((a, b) => a.change.pct - b.change.pct)
+  .slice(0, 6);
 
   return (
     <section className="bg-[#f4f7f3] px-3 py-4 sm:px-5 sm:py-5">

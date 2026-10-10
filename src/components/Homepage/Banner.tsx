@@ -1,3 +1,4 @@
+import { getBanglaDate } from "@/utils/dateConvertion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,8 +10,8 @@ const Banner = () => {
         {/* ================= LEFT CONTENT ================= */}
         <div className="flex-1 lg:pl-0">
           {/* Date */}
-          <div className="mb-4 inline-flex rounded-full bg-green-50 px-3 py-1 text-[11px] font-medium text-green-700 sm:text-[12px]">
-            বুধবার, ৭ অক্টোবর, ২০২৬
+          <div className="mb-4 inline-flex rounded-full bg-green-50 px-3 py-1 text-[11px] font-large text-green-700 sm:text-[12px]">
+             {getBanglaDate()}
           </div>
 
           {/* Heading */}
