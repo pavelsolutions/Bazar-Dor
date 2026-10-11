@@ -104,9 +104,12 @@ export async function getProducts() {
 
 ## 🖼️ Project Preview
 
-```markdown
-<img width="1525" height="3025" alt="Bazar Dor" src="https://github.com/user-attachments/assets/b66ac65d-122e-45e6-a264-885e6d7df39f" />
-<img width="1525" height="3025" alt="Bazar Dor" src="https://github.com/user-attachments/assets/f96c7798-d28d-4185-9176-01eeb8d5a1cf" />
+<div align="center">
+  <img
+    width="48%"
+    alt="BazarDor Home Page"
+    src="https://github.com/user-attachments/assets/b66ac65d-122e-45e6-a264-885e6d7df39f"
+  />
 
 
 ```
