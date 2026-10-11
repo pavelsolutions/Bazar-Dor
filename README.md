@@ -7,7 +7,7 @@
 
 BazarDor is a responsive Bengali-language web application that helps users explore everyday product prices, browse categories, compare market-wise prices, and manage their accounts through a simple and user-friendly interface.
 
-[🌐 Live Demo](YOUR_LIVE_URL) · [💻 GitHub Repository](YOUR_GITHUB_REPOSITORY_URL)
+[🌐 Live Demo](https://bazar-dor-asjs.vercel.app/) · [💻 GitHub Repository](https://github.com/pavelsolutions/Bazar-Dor)
 
 </div>
 
@@ -51,6 +51,12 @@ Users can explore essential products, browse different categories, view price ch
 ## 🔌 API Documentation
 
 ### Base URLs
+
+**Main API**
+
+```text
+https://openapi.programming-hero.com/api/bazardor
+```
 
 **Primary API**
 
@@ -104,16 +110,13 @@ Create a `screenshots` folder in your repository and add your screenshots.
 
 ```markdown
 ![Home Page](./screenshots/home.png)
-![Category Page](./screenshots/category.png)
-![Product Details](./screenshots/product-details.png)
-![Profile Page](./screenshots/profile.png)
 ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js version supported by your Next.js version
+- Node.js version supported by  Next.js version
 - npm
 - MongoDB database for authentication
 - OAuth credentials if Google or GitHub login is enabled
@@ -136,19 +139,11 @@ npm install
 ### 3. Configure Environment Variables
 
 Create a `.env.local` file in the project root.
+GOOGLE_CLIENT_ID="your_google_client_id"
+GOOGLE_CLIENT_SECRET="your_google_client_secret"
 
-```env
-BETTER_AUTH_MD_URI=your_mongodb_connection_string
-BETTER_AUTH_SECRET=your_random_secret
-BETTER_AUTH_URL=http://localhost:3000
-
-# Add these only if used in your authentication configuration.
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-
-GITHUB_CLIENT_ID=your_github_client_id
-GITHUB_CLIENT_SECRET=your_github_client_secret
-```
+GITHUB_CLIENT_ID="your_github_client_id"
+GITHUB_CLIENT_SECRET="your_github_client_secret"
 
 > Use the exact environment variable names configured in your application. Add only the variables you need. Never commit `.env.local` or expose credentials publicly.
 
@@ -315,14 +310,6 @@ BazarDor aims to provide a consistent experience across different screen sizes.
 - Server-side session verification for protected resources.
 
 Keep database credentials, OAuth secrets, and `.env.local` private.
-
-## 🛣️ Future Improvements
-
-- Search products by Bengali name.
-- Filter products by market and price range.
-- Display historical price trends with charts.
-- Add a favorites or watchlist feature.
-- Improve accessibility and automated testing.
 
 ## 📄 License
 
