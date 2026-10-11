@@ -46,8 +46,9 @@ export default function RootLayout({
       <body className="font-hind antialiased">
         {/* <Header />
         <CategoryNavbar/> */}
-        <div suppressHydrationWarning={false} className="sticky top-0 z-50">
+        <div className="sticky top-0 z-50">
           <Toast.Provider placement="top end" />
+          {/* <SocialSignInToast /> */}
           <Header />
           <CategoryNavbar />
         </div>

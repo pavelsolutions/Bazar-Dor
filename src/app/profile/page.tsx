@@ -1,6 +1,11 @@
-"use client"
+"use client";
+
 import { useEffect, useState } from "react";
-import { signOut, updateUser, useSession } from "@/lib/auth-client";
+import {
+  signOut,
+  updateUser,
+  useSession,
+} from "@/lib/auth-client";
 import { toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
@@ -12,44 +17,64 @@ const ProfilePage = () => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
 
-  // Set the initial name from the authenticated session
+
+  // Set initial name from authenticated session
   useEffect(() => {
     if (session?.user?.name) {
       setName(session.user.name);
     }
   }, [session?.user?.name]);
 
-  // Sign out
+//   useEffect(() => {
+//   if (!isPending && !session?.user) {
+//     router.replace("/sign-in?reason=auth-required");
+//   }
+// }, [isPending, session?.user, router]);
+
   const handleSignOut = async () => {
-    if (isSigningOut) return;
+  if (isSigningOut) return;
 
-    setIsSigningOut(true);
+  setIsSigningOut(true);
 
-    try {
-      const { error } = await signOut();
+  try {
+    await signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          toast.success("সাইন আউট সফল", {
+            description: "সফলভাবে সাইন আউট হয়েছে।",
+            timeout: 2000,
+          });
 
-      if (error) {
-        toast.danger("সাইন আউট ব্যর্থ", {
-          description: "আবার চেষ্টা করুন।",
-        });
-        return;
-      }
+          router.replace("/");
+        },
 
-      toast.success("সাইন আউট সফল", {
-        description: "সফলভাবে সাইন আউট হয়েছে।",
-        timeout: 2000,
-      });
+        onError: () => {
+          toast.danger("সাইন আউট ব্যর্থ", {
+            description: "আবার চেষ্টা করুন।",
+          });
+        },
+      },
+    });
+  } catch (error) {
+    console.error("Sign out error:", error);
 
-      router.push("/sign-in?logout=success");
-      router.refresh();
-    } catch {
-      toast.danger("সাইন আউট ব্যর্থ", {
-        description: "একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।",
-      });
-    } finally {
-      setIsSigningOut(false);
-    }
-  };
+    toast.danger("সাইন আউট ব্যর্থ", {
+      description: "একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।",
+    });
+  } finally {
+    setIsSigningOut(false);
+  }
+};
+
+  // const handleSignOut = async () => {
+  //     await signOut({
+  //         fetchOptions: {
+  //             onSuccess: () => {
+  //                 router.push("/");
+  //             },
+  //         },
+  //     });
+  // }
 
   // Update profile name
   const handleUpdateUserInfo = async () => {
@@ -73,6 +98,8 @@ const ProfilePage = () => {
       toast.info("কোনো পরিবর্তন করা হয়নি");
       return;
     }
+
+    if (isUpdating) return;
 
     setIsUpdating(true);
 
@@ -108,27 +135,19 @@ const ProfilePage = () => {
   if (isPending) {
     return (
       <main className="flex min-h-[calc(100vh-68px)] items-center justify-center bg-[#f4f7f3] px-4">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-200 border-t-green-700" />
+        <div className="h-20 w-20 animate-spin rounded-full border-2 border-gray-200 border-t-green-700" />
       </main>
     );
   }
 
-  // Redirect unauthenticated users
-  if (!session?.user) {
-    router.push("/sign-in?reason=auth-required");
-    return null;
-  }
 
   return (
     <main className="min-h-[calc(100vh-68px)] bg-[#f4f7f3] px-4 py-6 sm:px-5 sm:py-8">
-      <div className="mx-auto max-w-[1164px]">
-
-        {/* Page Header */}
+      <div className="mx-auto max-w-[700px]">
         <div className="mb-5">
           <h1 className="text-[24px] font-bold leading-8 text-gray-900">
             আমার প্রোফাইল
           </h1>
-
           <p className="mt-1 text-[12px] text-gray-500">
             আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।
           </p>
@@ -137,37 +156,33 @@ const ProfilePage = () => {
         {/* Profile Card */}
         <section className="rounded-xl border border-gray-200 bg-white px-5 py-4">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-
-            {/* User Information */}
             <div className="flex items-center gap-3">
-
-              {/* Avatar */}
               <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-gray-100">
                 <span className="text-xl font-semibold uppercase text-gray-500">
-                  {session.user.name?.slice(0, 1) ?? "U"}
+                  {session?.user.name?.slice(0, 1) ?? "U"}
                 </span>
               </div>
 
-              {/* Name and Email */}
               <div>
                 <h2 className="text-[17px] font-semibold leading-5 text-gray-900">
-                  {session.user.name}
+                  {session?.user.name}
                 </h2>
 
                 <p className="mt-1 text-[12px] text-gray-500">
-                  {session.user.email}
+                  {session?.user.email}
                 </p>
               </div>
             </div>
 
-            {/* Sign Out */}
             <button
               onClick={handleSignOut}
               type="button"
               disabled={isSigningOut}
-              className="w-fit rounded-lg border border-red-400 px-4 py-2 text-[12px] font-medium text-red-500 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
+              className="w-fit rounded-lg border border-red-400 px-4 py-2 text-[12px] font-medium text-red-500 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
             >
-              {isSigningOut ? "সাইন আউট হচ্ছে..." : "← সাইন আউট"}
+              {isSigningOut
+                ? "সাইন আউট হচ্ছে..."
+                : "← সাইন আউট"}
             </button>
           </div>
         </section>
@@ -179,8 +194,6 @@ const ProfilePage = () => {
           </h2>
 
           <div className="mt-4 rounded-lg border border-gray-200 p-4 sm:p-5">
-
-            {/* Name Input */}
             <div>
               <label
                 htmlFor="name"
@@ -202,7 +215,6 @@ const ProfilePage = () => {
               />
             </div>
 
-            {/* Update Button */}
             <button
               type="button"
               onClick={handleUpdateUserInfo}

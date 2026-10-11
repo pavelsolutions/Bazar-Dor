@@ -12,9 +12,8 @@ export interface IPriceChange {
 
 export interface IMarket {
   id: string;
-  name: string;
-  district: string;
-  today: number;
+  market: string;
+  division: string;
   min: number;
   max: number;
 }

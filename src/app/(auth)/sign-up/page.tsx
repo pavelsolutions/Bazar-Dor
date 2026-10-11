@@ -12,6 +12,7 @@ import {
   Input,
   Label,
   TextField,
+  toast,
 } from "@heroui/react";
 import { signIn, signUp } from "@/lib/auth-client";
 import { Icon } from "@iconify/react";
@@ -21,48 +22,213 @@ const SignUp = () => {
   const router = useRouter();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const data: Record<string, string> = {};
-    formData.forEach((value, key) => {
-      data[key] = value.toString();
+  e.preventDefault();
+
+  const formData = new FormData(e.currentTarget);
+  const data: Record<string, string> = {};
+
+  formData.forEach((value, key) => {
+    data[key] = value.toString();
+  });
+
+  // Password match check
+  if (data.password !== data.confirmPassword) {
+    toast.danger("সাইন আপ ব্যর্থ", {
+      description: "দুটি পাসওয়ার্ড একই নয়।",
+      timeout: 5000,
     });
+    return;
+  }
 
-    // Password match check
-    if (data.password !== data.confirmPassword) {
-      return;
-    }
-
-    // Sign Up
-    const { data: signUpData, error } = await signUp.email({
+  // Sign Up
+  try {
+    const { error } = await signUp.email({
       name: data.name,
       email: data.email,
       password: data.password,
       callbackURL: "/",
     });
 
+    // Error handling
     if (error) {
-      console.error(error);
+      console.error("Sign-up error:", error);
+      if (
+        error.code === "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL"
+      ) {
+        toast.danger("সাইন আপ ব্যর্থ", {
+          description:
+            "এই ইমেইল দিয়ে ইতিমধ্যে অ্যাকাউন্ট তৈরি করা হয়েছে। সাইন ইন করুন।",
+          timeout: 5000,
+        });
+      } else {
+        toast.danger("সাইন আপ ব্যর্থ", {
+          description:
+            "অ্যাকাউন্ট তৈরি করা যায়নি। আবার চেষ্টা করুন।",
+          timeout: 5000,
+        });
+      }
       return;
     }
 
-    router.push("/");
-  };
+    // Success message
+    toast.success("সাইন আপ সফল", {
+      description: "স্বাগতম! আপনার অ্যাকাউন্ট তৈরি হয়েছে।",
+      timeout: 5000,
+    });
+
+    // Redirect to Home
+    router.replace("/");
+  } catch (error) {
+    // console.error("Unexpected sign-up error:", error);
+
+    toast.danger("সাইন আপ ব্যর্থ", {
+      description: "একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।",
+      timeout: 5000,
+    });
+  }
+};
+
+  // const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   const formData = new FormData(e.currentTarget);
+  //   const data: Record<string, string> = {};
+  //   formData.forEach((value, key) => {
+  //     data[key] = value.toString();
+  //   });
+
+  //   // Password match check
+  //   if (data.password !== data.confirmPassword) {
+  //     return;
+  //   }
+
+  //   // Sign Up
+  //   const { data: signUpData, error } = await signUp.email({
+  //     name: data.name,
+  //     email: data.email,
+  //     password: data.password,
+  //     callbackURL: "/",
+  //   });
+
+  //   if (error) {
+  //     console.error(error);
+  //     return;
+  //   }
+
+  //   router.push("/");
+  // };
+
+// const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+//   e.preventDefault();
+
+//   const formData = new FormData(e.currentTarget);
+//   const data: Record<string, string> = {};
+
+//   formData.forEach((value, key) => {
+//     data[key] = value.toString();
+//   });
+
+//   // Password match check
+//   if (data.password !== data.confirmPassword) {
+//     toast.danger("সাইন আপ ব্যর্থ", {
+//       description: "দুটি পাসওয়ার্ড একই নয়।",
+//       timeout: 5000,
+//     });
+//     return;
+//   }
+
+//   try {
+//     const { error } = await signUp.email({
+//       name: data.name,
+//       email: data.email,
+//       password: data.password,
+//       callbackURL: "/",
+//     });
+
+//     if (error) {
+//       console.error(error);
+
+//       toast.danger("সাইন আপ ব্যর্থ", {
+//         description: "আবার চেষ্টা করুন অথবা তথ্য যাচাই করুন।",
+//         timeout: 5000,
+//       });
+//       return;
+//     }
+
+//     toast.success("সাইন আপ সফল", {
+//       description: "আপনাকে স্বাগতম!",
+//       timeout: 5000,
+//     });
+
+//     router.replace("/");
+//   } catch (error) {
+//     console.error("Sign-up error:", error);
+
+//     toast.danger("সাইন আপ ব্যর্থ", {
+//       description: "একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।",
+//       timeout: 5000,
+//     });
+//   }
+// };
 
   const handleGoogleSignIn = async () => {
-          const { data, error } = await signIn.social({
-              provider: "google",
-              callbackURL: "/",
-          });
-      };
-  
-      const handleGithubSignIn = async () => {
-          const { data, error } = await signIn.social({
-              provider: "github",
-              callbackURL: "/",
-          });
-      };
-  
+    try {
+      const { error } = await signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+
+      if (error) {
+        toast.danger("Google সাইন ইন ব্যর্থ", {
+          description: "আবার চেষ্টা করুন।",
+          timeout: 5000,
+        });
+        return;
+      }
+
+      toast.success("Google সাইন ইন সফল", {
+        description: "স্বাগতম! আপনাকে হোম পেজে নিয়ে যাওয়া হচ্ছে।",
+        timeout: 5000,
+      });
+    } catch (error) {
+      console.error("Google sign-in error:", error);
+
+      toast.danger("Google সাইন ইন ব্যর্থ", {
+        description: "একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।",
+        timeout: 5000,
+      });
+    }
+  };
+
+  const handleGithubSignIn = async () => {
+    try {
+      const { error } = await signIn.social({
+        provider: "github",
+        callbackURL: "/",
+      });
+
+      if (error) {
+        toast.danger("GitHub সাইন ইন ব্যর্থ", {
+          description: "আবার চেষ্টা করুন।",
+          timeout: 5000,
+        });
+        return;
+      }
+
+      toast.success("GitHub সাইন ইন সফল", {
+        description: "স্বাগতম! আপনাকে হোম পেজে নিয়ে যাওয়া হচ্ছে।",
+        timeout: 5000,
+      });
+    } catch (error) {
+      console.error("GitHub sign-in error:", error);
+
+      toast.danger("GitHub সাইন ইন ব্যর্থ", {
+        description: "একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।",
+        timeout: 5000,
+      });
+    }
+  };
+
+
 
   return (
     <main className="min-h-[calc(100vh-68px)] bg-[#f4f7f3] px-4 py-8 sm:py-10">

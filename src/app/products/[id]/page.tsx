@@ -17,7 +17,7 @@ const ProductDetails = async ({ params }: IProductProps) => {
   const { id } = await params;
   const product = await getProduct(id);
 
-  // ================= PRODUCT NOT FOUND =================
+
     if (!product) {
     notFound();
   }
@@ -278,10 +278,10 @@ const ProductDetails = async ({ params }: IProductProps) => {
                           className="border-t border-gray-200 odd:bg-white even:bg-[#f1f5f1]"
                         >
                           <td className="px-3 py-2.5 text-left font-medium text-gray-800">
-                            {market.name}
+                            {market.market}
                           </td>
                           <td className="px-3 py-2.5 text-left text-gray-600">
-                            {market.district}
+                            {market.division}
                           </td>
                           <td className="px-3 py-2.5 text-right text-gray-700">
                             {bnNumber(

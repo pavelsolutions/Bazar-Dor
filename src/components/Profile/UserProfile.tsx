@@ -5,21 +5,54 @@ import { ChevronDown, UserRound, LogOut } from "lucide-react";
 import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { toast } from "@heroui/react";
 
 const UserProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
 
-   const handleSignOut = async () => {
-        await signOut({
-            fetchOptions: {
-                onSuccess: () => {
-                    router.push("/sign-in");
-                },
-            },
+  const [isSigningOut, setIsSigningOut] = useState(false);
+
+  // const handleSignOut = async () => {
+  //     await signOut({
+  //         fetchOptions: {
+  //             onSuccess: () => {
+  //                 router.push("/");
+  //             },
+  //         },
+  //     });
+  // }
+
+  const handleSignOut = async () => {
+    if (isSigningOut) return;
+    setIsSigningOut(true);
+
+    try {
+      const { error } = await signOut();
+
+      if (error) {
+        toast.danger("সাইন আউট ব্যর্থ", {
+          description: "আবার চেষ্টা করুন।",
         });
+        return;
+      }
+
+      toast.success("সাইন আউট সফল", {
+        description: "সফলভাবে সাইন আউট হয়েছে।",
+        timeout: 2000,
+      });
+
+      router.replace("/");
+      // router.refresh();
+    } catch {
+      toast.danger("সাইন আউট ব্যর্থ", {
+        description: "একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।",
+      });
+    } finally {
+      setIsSigningOut(false);
     }
+  };
 
   return (
     <div className="relative">
@@ -32,7 +65,7 @@ const UserProfile = () => {
         <div className="flex items-center gap-2.5">
           {/* Avatar */}
           <div className="flex h-7 w-7 items-center justify-center rounded-full bg-green-700 text-[11px] font-bold text-white">
-            {session?.user?.name.slice(0,1)}
+            {session?.user?.name.slice(0, 1)}
           </div>
 
           <span className="text-[14px] font-medium text-gray-800">
@@ -42,9 +75,8 @@ const UserProfile = () => {
 
         <ChevronDown
           size={13}
-          className={`text-gray-500 transition-transform ${
-            isOpen ? "rotate-180" : ""
-          }`}
+          className={`text-gray-500 transition-transform ${isOpen ? "rotate-180" : ""
+            }`}
         />
       </button>
 
@@ -77,7 +109,8 @@ const UserProfile = () => {
           {/* Sign Out */}
           <button onClick={handleSignOut}
             type="button"
-            className="flex w-full items-center gap-2.5 px-5 pb-4 pt-1 text-left text-[14px] text-red-500 transition hover:bg-gray-50"
+            disabled={isSigningOut}
+            className="flex w-full items-center gap-2.5 px-5 pb-4 pt-1 text-left text-[14px] text-red-500 transition hover:bg-gray-50 cursor-pointer"
           >
             <LogOut
               size={16}

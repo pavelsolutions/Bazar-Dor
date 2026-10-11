@@ -137,21 +137,21 @@ export default function Header() {
                 হোম
               </Link>
 
-              <Link
+              {/* <Link
                 href="/market"
                 onClick={() => setIsMenuOpen(false)}
                 className="border-b border-gray-100 py-3 text-sm font-medium text-gray-800"
               >
                 বাজার দর
-              </Link>
+              </Link> */}
 
-              <Link
+              {/* <Link
                 href="/news"
                 onClick={() => setIsMenuOpen(false)}
                 className="border-b border-gray-100 py-3 text-sm font-medium text-gray-800"
               >
                 খবর
-              </Link>
+              </Link> */}
 
               <Link
                 href="/profile"
