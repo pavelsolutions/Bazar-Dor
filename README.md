@@ -110,6 +110,7 @@ export async function getProducts() {
     alt="BazarDor Home Page"
     src="https://github.com/user-attachments/assets/b66ac65d-122e-45e6-a264-885e6d7df39f"
   />
+</div>
 
 
 ```
