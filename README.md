@@ -102,14 +102,12 @@ export async function getProducts() {
 }
 ```
 
-## 🖼️ Screenshots
-
-Add screenshots of your application to showcase the interface.
-
-Create a `screenshots` folder in your repository and add your screenshots.
+## 🖼️ Project Preview
 
 ```markdown
 <img width="1525" height="3025" alt="Bazar Dor" src="https://github.com/user-attachments/assets/b66ac65d-122e-45e6-a264-885e6d7df39f" />
+<img width="1525" height="3025" alt="Bazar Dor" src="https://github.com/user-attachments/assets/f96c7798-d28d-4185-9176-01eeb8d5a1cf" />
+
 
 ```
 
