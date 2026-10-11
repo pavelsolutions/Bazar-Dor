@@ -1,11 +1,10 @@
-
 <div align="center">
 
 # 🛒 বাজার দর | BazarDor
 
 ### বাংলাদেশের নিত্যপ্রয়োজনীয় পণ্যের বাজারদর জানুন সহজেই।
 
-BazarDor is a responsive Bengali-language web application that helps users explore everyday product prices, browse categories, compare market-wise prices, and manage their accounts through a simple and user-friendly interface.
+A responsive Bengali-language web application to explore everyday product prices, browse categories, compare market-wise prices, and manage user accounts through a simple interface.
 
 [🌐 Live Demo](https://bazar-dor-asjs.vercel.app/) · [💻 GitHub Repository](https://github.com/pavelsolutions/Bazar-Dor)
 
@@ -17,7 +16,7 @@ BazarDor is a responsive Bengali-language web application that helps users explo
 
 **বাজার দর (BazarDor)** is designed to make everyday market-price information easier to access for Bengali-speaking users.
 
-Users can explore essential products, browse different categories, view price changes, compare prices across markets, and manage their profiles through a responsive interface.
+Users can explore essential products, browse categories, view price changes, compare prices across markets, and manage their profiles through a responsive interface.
 
 ## ✨ Key Features
 
@@ -32,53 +31,53 @@ Users can explore essential products, browse different categories, view price ch
 - 🔔 **Toast Notifications** — Show feedback for authentication, validation, and profile updates.
 - 🧭 **Custom Error Pages** — Provide a friendly message and a link back home for unknown routes.
 
-> Keep the features listed here aligned with what you have actually implemented.
+> Keep this feature list aligned with what is actually implemented in the application.
 
 ## 🧰 Technologies Used
 
 | Technology | Purpose |
 |---|---|
-| Next.js App Router | Application structure and routing |
-| React | UI components |
-| TypeScript | Type-safe development |
-| Tailwind CSS | Responsive styling |
-| HeroUI | UI components |
-| Better Auth | Authentication and session management |
-| MongoDB | Authentication database |
-| Vercel CLI | Deployment from the terminal |
-| Vercel | Hosting and deployment |
+| [Next.js App Router](https://nextjs.org/) | Application structure and routing |
+| [React](https://react.dev/) | UI components |
+| [TypeScript](https://www.typescriptlang.org/) | Type-safe development |
+| [Tailwind CSS](https://tailwindcss.com/) | Responsive styling |
+| [HeroUI](https://www.heroui.com/) | UI components and toast notifications |
+| [Better Auth](https://www.better-auth.com/) | Authentication and session management |
+| MongoDB | Authentication database, if configured |
+| [Vercel](https://vercel.com/) | Hosting and deployment |
+| Git & GitHub | Version control and collaboration |
+
+## 🖼️ Project Preview
+
+<div align="center">
+  <img
+    width="49%"
+    alt="BazarDor home page"
+    src="https://github.com/user-attachments/assets/b66ac65d-122e-45e6-a264-885e6d7df39f"
+  />
+</div>
+
+---
 
 ## 🔌 API Documentation
 
 ### Base URLs
 
-**Main API**
-
-```text
-https://openapi.programming-hero.com/api/bazardor
-```
-
-**Primary API**
-
-```text
-https://api.api-store.workers.dev/api/bazardor
-```
-
-**Alternative API**
-
-```text
-https://api.abcz.workers.dev/api/bazardor
-```
+| API | Base URL |
+|---|---|
+| Main API | `https://openapi.programming-hero.com/api/bazardor` |
+| Primary API | `https://api.api-store.workers.dev/api/bazardor` |
+| Alternative API | `https://api.abcz.workers.dev/api/bazardor` |
 
 ### Available Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
-| GET | `/products` | Get all products |
-| GET | `/products?category=chal` | Filter products by category |
-| GET | `/products/1` | Get a single product |
-| GET | `/categories` | Get all categories |
-| GET | `/categories/chal` | Get a single category |
+| `GET` | `/products` | Get all products |
+| `GET` | `/products?category=chal` | Filter products by category |
+| `GET` | `/products/1` | Get a single product |
+| `GET` | `/categories` | Get all categories |
+| `GET` | `/categories/chal` | Get a single category |
 
 ### Example API Request
 
@@ -87,12 +86,9 @@ const API_BASE_URL =
   "https://api.api-store.workers.dev/api/bazardor";
 
 export async function getProducts() {
-  const response = await fetch(
-    `${API_BASE_URL}/products`,
-    {
-      next: { revalidate: 3600 },
-    }
-  );
+  const response = await fetch(`${API_BASE_URL}/products`, {
+    next: { revalidate: 3600 },
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch products");
@@ -102,35 +98,24 @@ export async function getProducts() {
 }
 ```
 
-## 🖼️ Project Preview
+> Confirm the active API base URL and endpoint behavior against the API used by your application.
 
-<div align="center">
-  <img
-    width="48%"
-    alt="BazarDor Home Page"
-    src="https://github.com/user-attachments/assets/b66ac65d-122e-45e6-a264-885e6d7df39f"
-  />
-</div>
-
-
-```
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js version supported by  Next.js version
+- Node.js version compatible with the Next.js version in this project
 - npm
-- MongoDB database for authentication
-- OAuth credentials if Google or GitHub login is enabled
+- Access to the configured database, if required
+- OAuth credentials if Google or GitHub sign-in is enabled
 
 ### 1. Clone the Repository
 
-Replace the placeholders with your actual GitHub repository details.
-
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-cd YOUR_REPOSITORY
+git clone https://github.com/pavelsolutions/Bazar-Dor.git
+cd Bazar-Dor
 ```
 
 ### 2. Install Dependencies
@@ -141,14 +126,23 @@ npm install
 
 ### 3. Configure Environment Variables
 
-Create a `.env.local` file in the project root.
+Create a `.env.local` file in the project root and add the variables required by your application's configuration.
+
+Example placeholders only:
+
+```env
+BETTER_AUTH_SECRET="your_generated_auth_secret"
+BETTER_AUTH_URL="http://localhost:3000"
+DATABASE_URL="your_database_connection_string"
+
 GOOGLE_CLIENT_ID="your_google_client_id"
 GOOGLE_CLIENT_SECRET="your_google_client_secret"
 
 GITHUB_CLIENT_ID="your_github_client_id"
 GITHUB_CLIENT_SECRET="your_github_client_secret"
+```
 
-> Use the exact environment variable names configured in your application. Add only the variables you need. Never commit `.env.local` or expose credentials publicly.
+> **Security:** These are placeholders, not real credentials. Use the exact environment variable names required by your project. Never commit `.env.local`, database credentials, OAuth secrets, or other private values to GitHub.
 
 ### 4. Run the Development Server
 
@@ -169,23 +163,13 @@ npm run start
 
 ## 🚢 Deploy with Vercel CLI
 
-You can deploy BazarDor directly from your terminal using the Vercel CLI.
-
 ### 1. Install Vercel CLI
-
-Install Vercel CLI globally using npm:
 
 ```bash
 npm install --global vercel
 ```
 
-Verify the installation:
-
-```bash
-vercel --version
-```
-
-Alternatively, use Vercel CLI without a global installation:
+Or run it without a global installation:
 
 ```bash
 npx vercel --version
@@ -197,41 +181,28 @@ npx vercel --version
 vercel login
 ```
 
-Follow the instructions in your terminal to log in to your Vercel account.
-
 ### 3. Link Your Project
-
-Run this command from your project root directory:
 
 ```bash
 vercel link
 ```
 
-Follow the prompts to link your local project to a Vercel project. You can create a new project if needed.
+Follow the prompts to link the local project to a Vercel project, or create a new one.
 
 ### 4. Configure Environment Variables
 
-Open:
+In the Vercel dashboard, open:
 
-**Vercel Dashboard → Project → Settings → Environment Variables**
+**Project → Settings → Environment Variables**
 
-Add the environment variables required by your application, including your MongoDB connection string and Better Auth configuration.
-
-If Google or GitHub authentication is enabled, configure the corresponding OAuth credentials as well.
-
-To view configured environment variables:
+Add the variables required by your application, including database and Better Auth configuration. Add Google and GitHub OAuth credentials if those providers are enabled.
 
 ```bash
 vercel env ls
-```
-
-To pull environment variables into your local `.env.local` file:
-
-```bash
 vercel env pull .env.local
 ```
 
-> Never commit `.env.local` or expose database credentials, OAuth secrets, or other private environment variables.
+Never commit the generated `.env.local` file.
 
 ### 5. Deploy a Preview
 
@@ -239,84 +210,76 @@ vercel env pull .env.local
 vercel
 ```
 
-Vercel will build and deploy a preview version of your application. Open the generated URL and test the website.
-
 ### 6. Deploy to Production
-
-First, verify that the production build succeeds:
 
 ```bash
 npm run build
-```
-
-Then deploy the application to production:
-
-```bash
 vercel --prod
 ```
 
 ### 7. Verify the Deployment
 
-After deployment, check the following:
+- [ ] Home page and product data load correctly.
+- [ ] Category filtering and product sorting work.
+- [ ] Product detail pages work after directly refreshing the browser.
+- [ ] Sign-in and sign-up work.
+- [ ] Google and GitHub sign-in work if configured.
+- [ ] Protected routes require authentication.
+- [ ] Profile updates work.
+- [ ] The layout works on mobile, tablet, and desktop.
+- [ ] Unknown routes display a friendly 404 page.
 
-- Home page and product data load correctly.
-- Category filtering and product sorting work.
-- Product detail pages work after directly refreshing the browser.
-- Sign-in, sign-up, and configured social login work.
-- Protected routes require authentication.
-- Profile updates work.
-- The layout works on mobile, tablet, and desktop.
-- Unknown routes display a friendly 404 page.
-
-For OAuth login, make sure the callback URLs are configured for your deployed domain.
-
-For GitHub, the callback URL commonly follows this format:
+For OAuth, configure callback URLs for the deployed domain according to your Better Auth setup. A GitHub callback commonly follows this format:
 
 ```text
 https://YOUR_DOMAIN/api/auth/callback/github
 ```
 
-Use the callback URL required by your Better Auth configuration.
+Use the exact callback URL required by your authentication configuration.
 
 ---
 
 ## 🗺️ Application Routes
+
+The routes below are examples based on the described application. Update them to match your actual route structure.
 
 | Route | Description |
 |---|---|
 | `/` | Home page with price trends and products |
 | `/category/[slug]` | Products filtered by category |
 | `/product/[slug]` | Product details and market prices |
-| `/signin` | Sign-in page |
-| `/signup` | Registration page |
+| `/sign-in` | Sign-in page |
+| `/sign-up` | Registration page |
 | `/profile` | User profile |
 | `/profile/update` | Update profile information |
 
-> Update these paths if your application uses different route names.
-
 ## 📱 Responsive Design
-
-BazarDor aims to provide a consistent experience across different screen sizes.
 
 - **Mobile:** Compact product cards and usable navigation.
 - **Tablet:** Flexible product grids and layouts.
 - **Desktop:** Multi-column product grids and wider content areas.
-- **All devices:** Readable Bengali text and usable controls.
+- **All devices:** Readable Bengali text and accessible controls.
 
 ## 🔐 Authentication and Security
 
-- Email and password authentication through Better Auth.
+- Email/password authentication through Better Auth.
 - Google and GitHub login when configured.
 - Toast feedback for login, registration, logout, and validation.
-- Protected product details for authenticated users.
+- Protected routes and server-side session verification for protected resources.
 - Secure handling of environment variables.
-- Server-side session verification for protected resources.
 
-Keep database credentials, OAuth secrets, and `.env.local` private.
+**Never publish real OAuth secrets, database credentials, API keys, or `.env.local` contents.** If a credential was accidentally committed or exposed, rotate it with the provider and remove it from Git history as needed.
+
+## 🤝 Contributing
+
+1. Fork the repository.
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m "feat: describe your change"`
+4. Push the branch and open a pull request.
 
 ## 📄 License
 
-No license has been specified yet. Add a `LICENSE` file if you decide to publish the project under an open-source license.
+No license has been specified yet. Add a `LICENSE` file and update this section before distributing the project under an open-source license.
 
 ---
 
