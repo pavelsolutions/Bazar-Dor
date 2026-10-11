@@ -109,7 +109,8 @@ Add screenshots of your application to showcase the interface.
 Create a `screenshots` folder in your repository and add your screenshots.
 
 ```markdown
-![Home Page](./screenshots/home.png)
+<img width="1525" height="3025" alt="Bazar Dor" src="https://github.com/user-attachments/assets/b66ac65d-122e-45e6-a264-885e6d7df39f" />
+
 ```
 
 ## 🚀 Getting Started
